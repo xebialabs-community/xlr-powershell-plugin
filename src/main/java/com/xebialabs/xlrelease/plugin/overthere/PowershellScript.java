@@ -6,8 +6,6 @@
 
 package com.xebialabs.xlrelease.plugin.overthere;
 
-//import com.xebialabs.xlrelease.plugin.overthere.RemoteScript;
-//import com.xebialabs.deployit.plugin.api.reflect.PropertyDescriptor;
 import com.xebialabs.deployit.plugin.api.udm.ConfigurationItem;
 import com.xebialabs.overthere.*;
 import com.xebialabs.overthere.util.CapturingOverthereExecutionOutputHandler;
@@ -49,7 +47,6 @@ public class PowershellScript extends RemoteScript {
     }
 
     public int execute() {
-        System.out.println("Execute Script");
         try (OverthereConnection connection = Overthere.getConnection(protocol, options)) {
             connection.setWorkingDirectory(connection.getFile(remotePath));
 
@@ -59,7 +56,6 @@ public class PowershellScript extends RemoteScript {
             OverthereUtils.write(script.getBytes(UTF_8), targetFile);
             targetFile.setExecutable(true);
 
-            System.out.printf("powershell.exe -file %s\n", targetFile.getPath() );
             CmdLine scriptCommand = CmdLine.build( this.powerShellPath, "-ExecutionPolicy", "Unrestricted", "-Inputformat", "None", "-NonInteractive", "-NoProfile", "-Command", "$ErrorActionPreference = 'Stop'; & " + targetFile.getPath() + "; if($LastExitCode) { Exit $LastExitCode; }" );
 
             return connection.execute(stdout, stderr, scriptCommand);
