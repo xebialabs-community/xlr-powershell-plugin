@@ -1,0 +1,67 @@
+defaultTasks 'build'
+version = '1.0.0-beta'
+
+import org.apache.tools.ant.filters.*
+apply plugin: "com.github.hierynomus.license"
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+group = 'com.xebialabs.deployit.community'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+def apiVersion = '5.0.0'
+def xldeployHome = "$System.env.XLDEPLOY_HOME"
+
+task javac(type: JavaCompile) {
+  source = fileTree(dir: 'src', include: '**/*.java')
+  destinationDir = file('build/classes/main')
+  include 'src/main/com/xebialabs/xlrelease/plugin/overthere/PowershellScript.java'
+  classpath = files('build/classes/main')
+}
+
+dependencies {
+  compile fileTree(dir: '/Users/rbroker/Documents/xl-release-5.0.0-server/lib', include: ['*.jar'])
+  compile fileTree( dir: '/Users/rbroker/.gradle/caches/', include: ['*.jar'])
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath "nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0"
+  }
+}
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+  maven {
+      credentials {
+            username 'admin'
+            password 'P8hoGdyh'
+        }
+      url 'http://nexus.xebialabs.com/nexus/content/repositories/releases'
+  }
+  maven { url "http://repo.maven.apache.org/maven2" }
+}
+
+ 
+processResources {
+    filter ReplaceTokens, tokens: [
+        "project.version": project.property("version"),
+        "project.artifactId": project.property("name")
+    ]
+}
+
+license {
+    header rootProject.file('src/main/license/xebialabs_community.license')
+    strictCheck false
+}
+
