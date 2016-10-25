@@ -30,7 +30,7 @@ The **XLR Powershell Plugin** adds one more task to the *Remote Script group as 
 
 XL Release uses the Overthere framework, which includes several connection options. While the most common options are available in the XL Release GUI, you can use other options as described in the [Overthere documentation](https://github.com/xebialabs/overthere/blob/master/README.md).
 
-You can change the default values of options that are not exposed in the GUI in the `XLRELEASE_HOME/conf/deployit-defaults.properties` file.
+You can change the default values of options that are not exposed in the GUI in the `XLRELEASE_HOME/conf/deployit-defaults.properties` file. For example, if you wish to use 64 bit Powershell instead of x86 (which is required for certain Modules), add the following line: `remotescript.Powershell.powerShellPath=C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`
 
 If you need to use a different setting for a particular option per task, you can create a type modification in the `XLRELEASE_HOME/conf/synthetic.xml` file for the task types. In the modification, you can add the desired Overthere connection option as a property on the task. These task properties will automatically be used as connection options for Overthere if the name matches.
 
