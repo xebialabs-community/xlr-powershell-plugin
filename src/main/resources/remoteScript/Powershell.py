@@ -4,7 +4,6 @@
 #FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
 #
 import sys
-#from remoteScript.PowerShellScript import PowerShellScript
 from com.xebialabs.xlrelease.plugin.overthere import PowershellScript
 
 print "call to powershell object"

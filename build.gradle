@@ -23,6 +23,7 @@ def apiVersion = '2017.1.0'
 dependencies {
     compile "com.xebialabs.deployit:udm-plugin-api:$apiVersion"
     compile "com.xebialabs.overthere:overthere:2.4.4"
+    compile "com.xebialabs.xlrelease.plugins:xlr-remotescript-plugin:5.0.1"
 }
 
 repositories {
