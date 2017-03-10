@@ -37,10 +37,6 @@ dependencies {
   compile fileTree( dir: '/Users/rbroker/.gradle/caches/', include: ['*.jar'])
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
-}
-
 repositories {
   mavenLocal()
   mavenCentral()
