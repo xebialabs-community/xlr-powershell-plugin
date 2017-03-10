@@ -8,6 +8,13 @@ The **XLR Powershell Plugin** adds one more task to the *Remote Script group as 
 
 * **Remote Script:Powershell:** Execute a powershell script on a Microsoft Windows host via WinRM
 
+## CI status ##
+
+[![Build Status][xlr-powershell-plugin-travis-image] ][xlr-powershell-plugin-travis-url]
+
+[xlr-powershell-plugin-travis-image]: https://travis-ci.org/xebialabs-community/xlr-powershell-plugin.svg?branch=master
+[xlr-powershell-plugin-travis-url]: https://travis-ci.org/xebialabs-community/xlr-powershell-plugin
+
 
 ##Windows Powershell Properties##
 
