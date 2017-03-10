@@ -11,9 +11,16 @@ The **XLR Powershell Plugin** adds one more task to the *Remote Script group as 
 ## CI status ##
 
 [![Build Status][xlr-powershell-plugin-travis-image] ][xlr-powershell-plugin-travis-url]
+[![Codacy Status][xlr-powershell-plugin-codacy-image] ][xlr-powershell-plugin-codacy-url]
+[![Code climate Status][xlr-powershell-plugin-code-climate-image] ][xlr-powershell-plugin-code-climate-url]
+
 
 [xlr-powershell-plugin-travis-image]: https://travis-ci.org/xebialabs-community/xlr-powershell-plugin.svg?branch=master
 [xlr-powershell-plugin-travis-url]: https://travis-ci.org/xebialabs-community/xlr-powershell-plugin
+[xlr-powershell-plugin-codacy-image]: https://api.codacy.com/project/badge/Grade/33143486e49d47728a68ad2251ed4e65
+[xlr-powershell-plugin-codacy-url]: https://www.codacy.com/app/joris-dewinne/xlr-powershell-plugin
+[xlr-powershell-plugin-code-climate-image]: https://codeclimate.com/github/xebialabs-community/xlr-powershell-plugin/badges/gpa.svg
+[xlr-powershell-plugin-code-climate-url]: https://codeclimate.com/github/xebialabs-community/xlr-powershell-plugin
 
 
 ##Windows Powershell Properties##
