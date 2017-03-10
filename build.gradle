@@ -22,35 +22,27 @@ defaultTasks 'build'
 group = 'com.xebialabs.deployit.community'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-def apiVersion = '5.0.0'
-def xldeployHome = "$System.env.XLDEPLOY_HOME"
-
-task javac(type: JavaCompile) {
-  source = fileTree(dir: 'src', include: '**/*.java')
-  destinationDir = file('build/classes/main')
-  include 'src/main/com/xebialabs/xlrelease/plugin/overthere/PowershellScript.java'
-  classpath = files('build/classes/main')
-}
+def apiVersion = '2015.6.0'
 
 dependencies {
-  compile fileTree(dir: '/Users/rbroker/Documents/xl-release-5.0.0-server/lib', include: ['*.jar'])
-  compile fileTree( dir: '/Users/rbroker/.gradle/caches/', include: ['*.jar'])
+    compile "com.xebialabs.deployit:udm-plugin-api:$apiVersion"
+    compile "com.xebialabs.overthere:overthere:2.4.4"
 }
 
 repositories {
-  mavenLocal()
-  mavenCentral()
-  maven {
-      credentials {
-            username 'admin'
-            password 'P8hoGdyh'
+    mavenLocal()
+    mavenCentral()
+    maven {
+        credentials {
+            username 'community-plugins'
+            password 'community'
         }
-      url 'http://nexus.xebialabs.com/nexus/content/repositories/releases'
-  }
-  maven { url "http://repo.maven.apache.org/maven2" }
+        url 'http://nexus.xebialabs.com/nexus/content/repositories/releases'
+    }
+    maven { url "http://repo.maven.apache.org/maven2" }
 }
 
- 
+
 license {
     header rootProject.file('src/main/license/xebialabs_community.license')
     strictCheck false
