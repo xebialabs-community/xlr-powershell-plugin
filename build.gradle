@@ -18,10 +18,6 @@ xlDocker {
     runPortMapping = '15516:5516'
 }
 
-defaultTasks 'build'
-group = 'com.xebialabs.deployit.community'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 def apiVersion = '2017.1.0'
 
 dependencies {
