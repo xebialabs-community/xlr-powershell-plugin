@@ -31,6 +31,8 @@ public class PowershellScript extends RemoteScript {
     private final String powerShellPath;
     private final String script;
     private final String extension;
+    private final String errorActionPreference;
+    private final String warningPreference;
 
     private final CapturingOverthereExecutionOutputHandler stdout = capturingHandler();
     private final CapturingOverthereExecutionOutputHandler stderr = capturingHandler();
@@ -44,6 +46,8 @@ public class PowershellScript extends RemoteScript {
         this.extension = options.get(OPERATING_SYSTEM, UNIX).getScriptExtension();
         this.remotePath = remoteScript.getProperty("remotePath");
         this.powerShellPath = remoteScript.getProperty("powerShellPath");
+        this.errorActionPreference = remoteScript.getProperty("errorActionPreference");
+        this.warningPreference = remoteScript.getProperty("warningPreference");
     }
 
     public int execute() {
@@ -56,7 +60,7 @@ public class PowershellScript extends RemoteScript {
             OverthereUtils.write(script.getBytes(UTF_8), targetFile);
             targetFile.setExecutable(true);
 
-            CmdLine scriptCommand = CmdLine.build( this.powerShellPath, "-ExecutionPolicy", "Unrestricted", "-Inputformat", "None", "-NonInteractive", "-NoProfile", "-Command", "$ErrorActionPreference = 'Stop'; & " + targetFile.getPath() + "; if($LastExitCode) { Exit $LastExitCode; }" );
+            CmdLine scriptCommand = CmdLine.build( this.powerShellPath, "-ExecutionPolicy", "Unrestricted", "-Inputformat", "None", "-NonInteractive", "-NoProfile", "-Command", "$ErrorActionPreference = '" + this.errorActionPreference + "'; $WarningPreference = '" + this.warningPreference + "';& " + targetFile.getPath() + "; if($LastExitCode) { Exit $LastExitCode; }" );
 
             return connection.execute(stdout, stderr, scriptCommand);
         } catch (Exception e) {

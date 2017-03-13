@@ -1,64 +1,44 @@
-defaultTasks 'build'
-version = '1.0.0-beta'
+plugins {
+    id "com.github.hierynomus.license" version "0.13.0"
+    id "com.xebialabs.xl.docker" version "1.0.0"
+}
 
-import org.apache.tools.ant.filters.*
-apply plugin: "com.github.hierynomus.license"
+version = '1.1.0'
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
 
-group = 'com.xebialabs.deployit.community'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-def apiVersion = '5.0.0'
-def xldeployHome = "$System.env.XLDEPLOY_HOME"
-
-task javac(type: JavaCompile) {
-  source = fileTree(dir: 'src', include: '**/*.java')
-  destinationDir = file('build/classes/main')
-  include 'src/main/com/xebialabs/xlrelease/plugin/overthere/PowershellScript.java'
-  classpath = files('build/classes/main')
+xlDocker {
+    compileImage = 'xebialabs/xlr_dev_compile'
+    compileVersion = 'v6.1.0.1'
+    runImage = 'xebialabs/xlr_dev_run'
+    runVersion = 'v6.1.0.1'
+    runPortMapping = '15516:5516'
 }
+
+def apiVersion = '2017.1.0'
 
 dependencies {
-  compile fileTree(dir: '/Users/rbroker/Documents/xl-release-5.0.0-server/lib', include: ['*.jar'])
-  compile fileTree( dir: '/Users/rbroker/.gradle/caches/', include: ['*.jar'])
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
-}
-
-buildscript {
-  repositories {
-    jcenter()
-  }
-  dependencies {
-    classpath "nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0"
-  }
+    compile "com.xebialabs.deployit:udm-plugin-api:$apiVersion"
+    compile "com.xebialabs.overthere:overthere:2.4.4"
+    compile "com.xebialabs.xlrelease.plugins:xlr-remotescript-plugin:5.0.1"
 }
 
 repositories {
-  mavenLocal()
-  mavenCentral()
-  maven {
-      credentials {
-            username 'admin'
-            password 'P8hoGdyh'
+    mavenLocal()
+    mavenCentral()
+    maven {
+        credentials {
+            username 'community-plugins'
+            password 'community'
         }
-      url 'http://nexus.xebialabs.com/nexus/content/repositories/releases'
-  }
-  maven { url "http://repo.maven.apache.org/maven2" }
+        url 'http://nexus.xebialabs.com/nexus/content/repositories/releases'
+    }
+    maven { url "http://repo.maven.apache.org/maven2" }
 }
 
- 
-processResources {
-    filter ReplaceTokens, tokens: [
-        "project.version": project.property("version"),
-        "project.artifactId": project.property("name")
-    ]
-}
 
 license {
     header rootProject.file('src/main/license/xebialabs_community.license')
