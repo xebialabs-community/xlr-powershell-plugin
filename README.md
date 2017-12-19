@@ -1,6 +1,6 @@
-#XLR Powershell Plugin#
+# XLR Powershell Plugin
 
-##Introduction##
+## Introduction
 
 The XL Release Remote Script plugin allows *XL Release* to execute powershell commands on remote hosts. It does so by using the [Overthere](https://github.com/xebialabs/overthere) framework, a Java library for manipulating files and executing processes on remote hosts.
 
