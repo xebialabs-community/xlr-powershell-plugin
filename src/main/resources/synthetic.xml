@@ -9,7 +9,7 @@
 
 
     <type type="remoteScript.Powershell"
-          extends="remoteScript.Windows"
+          extends="remoteScript.WindowsSmb"
           label="Powershell" description="Execute Powershell script on Windows host">
         <property name="scriptLocation" hidden="true" default="remoteScript/Powershell.py"/>
         <property name="powerShellPath" default="C:\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe"
