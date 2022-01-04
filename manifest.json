@@ -29,7 +29,7 @@
       }
     ],
     "maturity": "Incubating",
-    "name": "xlr-powershell-plugin",
+    "name": "Powershell Plugin",
     "requirements": {
       "product": "Release",
       "versions": [
@@ -38,10 +38,10 @@
     },
     "screenshots": [
     ],
-    "supportedBy": "Digital.ai",
+    "supportedBy": "Community",
     "author": {       
         "author": [],
-        "Community": ["Digital.ai"],
+        "Community": ["SE"],
         "Partner": []
     }
   }
