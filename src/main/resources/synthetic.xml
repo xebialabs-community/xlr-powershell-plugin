@@ -11,7 +11,7 @@
 
     <type type="remoteScript.Powershell"
           extends="remoteScript.Windows"
-          label="Powershell" description="Execute Powershell script on Windows host">
+          label="Powershell" description="Execute Powershell script on Windows host Changed">
         <property name="scriptLocation" hidden="true" default="remoteScript/Powershell.py"/>
         <property name="powerShellPath" default="C:\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe"
                   hidden="true" required="true"/>
