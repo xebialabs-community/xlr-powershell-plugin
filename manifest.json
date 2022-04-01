@@ -14,7 +14,7 @@
     "categories": [
       "Powershell Command Plugin"
     ],
-    "description": "The XL Release Remote Script plugin allows XL Release to execute powershell commands on remote hosts. It does so by using the Overthere framework, a Java library for manipulating files and executing processes on remote hosts.",
+    "description": "The Release Remote Script plugin allows Release to execute powershell commands on remote hosts. It does so by using the Overthere framework, a Java library for manipulating files and executing processes on remote hosts.",
     "features": [
       "Remote Script"
     ],
