@@ -1,14 +1,21 @@
 plugins {
-    id "com.github.hierynomus.license" version "0.13.0"
+    id "com.github.hierynomus.license" version "0.16.1"
     id "com.xebialabs.xl.docker" version "1.0.0"
 }
 
-version = '2.0.0'
+version = '3.0.0'
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+        vendor = JvmVendorSpec.ADOPTIUM
+    }
+}
 
 xlDocker {
     compileImage = 'xebialabs/xlr_dev_compile'
@@ -18,21 +25,29 @@ xlDocker {
     runPortMapping = '15516:5516'
 }
 
-def apiVersion = '2017.1.0'
+def apiVersion = '2019.3.13'
 
 dependencies {
-    compile "com.xebialabs.deployit:udm-plugin-api:$apiVersion"
-    compile "com.xebialabs.overthere:overthere:2.4.4"
-    compile "com.xebialabs.xlrelease.plugins:xlr-remotescript-plugin:5.0.1"
+    implementation "com.xebialabs.deployit:udm-plugin-api:$apiVersion"
+    implementation "com.xebialabs.overthere:overthere:5.6.16"
+    implementation "com.xebialabs.xlrelease.plugins:xlr-remotescript-plugin:24.3.7"
 }
 
 repositories {
     mavenLocal()
     mavenCentral()
     maven {
-      url 'https://dist.xebialabs.com/public/maven2'
+        url 'https://dist.xebialabs.com/public/maven2'
     }
-    maven { url "http://repo.maven.apache.org/maven2" }
+    ["releases", "public", "thirdparty"].each { r ->
+        maven {
+            credentials {
+                username nexusUserName
+                password nexusPassword
+            }
+            url "${nexusBaseUrl}/repositories/${r}"
+        }
+    }
 }
 
 
