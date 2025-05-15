@@ -30,7 +30,7 @@ def apiVersion = '2019.3.13'
 dependencies {
     implementation "com.xebialabs.deployit:udm-plugin-api:$apiVersion"
     implementation "com.xebialabs.overthere:overthere:5.6.16"
-    implementation "com.xebialabs.xlrelease.plugins:xlr-remotescript-plugin:24.3.7"
+    implementation "com.xebialabs.xlrelease.plugins:xlr-remotescript-plugin:24.3.7-512.938"
 }
 
 repositories {
